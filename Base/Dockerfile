@@ -17,6 +17,8 @@ ADD ./vim.tar.gz		/root
 
 ADD ./run.sh			/
 
+RUN chmod 755 /run.sh
+
 WORKDIR /root
 
 #Update software library
@@ -45,5 +47,6 @@ RUN yum -y install ncurses ncurses-devel
 RUN cd vim73 && ./configure --enable-netbeans --disable-selinux --enable-multibyte --enable-fontset --with-vim-name=vi --with-features=huge && make && make install
 
 
+CMD ['sh /run.sh']
 
 EXPOSE	22
