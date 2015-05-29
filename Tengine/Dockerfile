@@ -56,7 +56,7 @@ RUN yum -y install pcre pcre-devel openssl openssl-devel
 RUN cd tengine-2.1.0 && ./configure && make && make install
 
 
-CMD ['sh /run.sh']
+CMD ['/run.sh']
 
 
 EXPOSE	22
