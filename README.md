@@ -7,3 +7,24 @@
 ##Tengine
 
 	淘宝的nginx
+
+##Mysql
+
+	Mysql5.5	
+
+##Memcache
+
+	Memcache
+
+##Nginx
+
+	Nginx1.8
+
+##PHP
+
+	PHP5.5
+
+##NginxPHP
+
+	Nginx1.8
+	PHP5.5
