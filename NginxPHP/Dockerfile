@@ -6,7 +6,7 @@
 #					vim
 #					git
 #					nginx1.8
-#					php5.5
+#					php5.3.3
 #
 
 FROM centos:6
@@ -56,9 +56,6 @@ RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
 RUN rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
 
-
-
-
 RUN yum install -y php-fpm
 RUN yum install -y php-mysql
 RUN yum install -y php-mbstring
@@ -66,6 +63,15 @@ RUN yum install -y wget
 
 ##install memcache
 RUN yum install -y php-pecl-memcache
+
+
+##nginx conf
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+
+ADD ./test.conf /etc/nginx/conf.d/
+
+##php conf
+RUN sed -e 's/;date\.timezone =/date\.timezone = Asia\/Shanghai/' -i /etc/php.ini
 
 RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key

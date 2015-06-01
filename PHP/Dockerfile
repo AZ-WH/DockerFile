@@ -5,7 +5,7 @@
 #					sshd
 #					vim
 #					git
-#					php5.5
+#					php5.3.3
 #
 
 FROM centos:6
@@ -57,6 +57,9 @@ RUN yum install -y wget
 
 ##install memcache
 RUN yum install -y php-pecl-memcache
+
+##php conf
+RUN sed -e 's/;date\.timezone =/date\.timezone = Asia\/Shanghai/' -i /etc/php.ini
 
 RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key

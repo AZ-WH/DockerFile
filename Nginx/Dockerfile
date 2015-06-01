@@ -48,6 +48,10 @@ RUN cd vim73 && ./configure --enable-netbeans --disable-selinux --enable-multiby
 RUN rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 RUN yum install -y nginx
 
+##nginx conf
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+
+ADD ./test.conf /etc/nginx/conf.d/
 
 RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
