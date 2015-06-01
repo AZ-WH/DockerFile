@@ -9,5 +9,5 @@
 
 		vim (vi)
 
-		PHP5.5
+		PHP5.3
 
