@@ -22,9 +22,9 @@
 
 ##PHP
 
-	PHP5.5
+	PHP5.3
 
 ##NginxPHP
 
 	Nginx1.8
-	PHP5.5
+	PHP5.3
