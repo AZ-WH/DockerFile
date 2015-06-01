@@ -16,9 +16,6 @@ ADD ./git-2.3.0.tar.gz	/root
 ADD ./vim-7.3.tar.bz2	/root
 ADD ./vim.tar.gz		/root
 
-ADD ./run.sh			/
-
-RUN chmod 755 /run.sh
 
 WORKDIR /root
 
@@ -53,6 +50,12 @@ RUN rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
 
 RUN yum install -y memcached
+
+RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+
+ADD ./run.sh			/
+RUN chmod 755 /run.sh
 
 CMD ['/run.sh']
 

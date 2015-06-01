@@ -17,9 +17,6 @@ ADD ./vim.tar.gz			/root
 
 ADD ./tengine-2.1.0.tar.gz	/root
 
-ADD ./run.sh				/
-
-RUN chmod 755 /run.sh
 
 WORKDIR /root
 
@@ -55,6 +52,11 @@ RUN yum -y install pcre pcre-devel openssl openssl-devel
 #install Tengine
 RUN cd tengine-2.1.0 && ./configure && make && make install
 
+RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+
+ADD ./run.sh				/
+RUN chmod 755 /run.sh
 
 CMD ['/run.sh']
 

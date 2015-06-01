@@ -16,9 +16,6 @@ ADD ./git-2.3.0.tar.gz	/root
 ADD ./vim-7.3.tar.bz2	/root
 ADD ./vim.tar.gz		/root
 
-ADD ./run.sh			/
-
-RUN chmod 755 /run.sh
 
 WORKDIR /root
 
@@ -47,11 +44,16 @@ RUN yum -y install ncurses ncurses-devel
 #install vim 7.3
 RUN cd vim73 && ./configure --enable-netbeans --disable-selinux --enable-multibyte --enable-fontset --with-vim-name=vi --with-features=huge && make && make install
 
-#安装nginx
+#install nginx
 RUN rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 RUN yum install -y nginx
-#
-##运行nginx
+
+
+RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+
+ADD ./run.sh			/
+RUN chmod 755 /run.sh
 
 CMD ['/run.sh']
 
